@@ -513,7 +513,7 @@ point is on the cite key of interest.")
 		      ("Arxiv" . (lambda ()
 				   (browse-url
 				    (format
-				     "http://arxiv.org/find/all/1/all:+AND+%s/0/1/0/all/0/1"
+				     "http://cn.arxiv.org/find/all/1/all:+AND+%s/0/1/0/all/0/1"
 				     (url-hexify-string helm-pattern)))))
 		      ("WebOfKnowledge" . (lambda ()
 					    (browse-url

@@ -19,7 +19,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; this library creates a new org-link for Arxiv (http://arxiv.org/) entries,
+;; this library creates a new org-link for Arxiv (http://cn.arxiv.org/) entries,
 ;; and provides functions to retrieve bibtex entries from an Arxiv number.
 ;;
 ;; An Arxiv number might look like: cond-mat/0410285 or 1503.01742
@@ -48,15 +48,15 @@
 ;; example: arxiv:cond-mat/0410285
 (org-ref-link-set-parameters "arxiv"
   :follow (lambda (link-string)
-            (browse-url (format "http://arxiv.org/abs/%s" link-string)))
+            (browse-url (format "http://cn.arxiv.org/abs/%s" link-string)))
   :export (lambda (keyword desc format)
             (cond
              ((eq format 'html)
-              (format  "<a href=\"http://arxiv.org/abs/%s\">arxiv:%s</a>"
+              (format  "<a href=\"http://cn.arxiv.org/abs/%s\">arxiv:%s</a>"
                        keyword  (or desc keyword)))
              ((eq format 'latex)
               ;; write out the latex command
-              (format "\\url{http://arxiv.org/abs/%s}{%s}" keyword (or desc keyword))))))
+              (format "\\url{http://cn.arxiv.org/abs/%s}{%s}" keyword (or desc keyword))))))
 
 ;;* Getting a bibtex entry for an arXiv article using remote service:
 ;; For an arxiv article, there is a link to a NASA ADS page like this:
@@ -171,8 +171,8 @@ Returns a formatted BibTeX entry."
   (let ((pdf-url (with-current-buffer
                      (url-retrieve-synchronously
                       (concat
-                       "http://arxiv.org/abs/" arxiv-number))
-                   ;; <meta name="citation_pdf_url" content="http://arxiv.org/pdf/0801.1144" />
+                       "http://cn.arxiv.org/abs/" arxiv-number))
+                   ;; <meta name="citation_pdf_url" content="http://cn.arxiv.org/pdf/0801.1144" />
                    (goto-char (point-min))
                    (search-forward-regexp
                     "name=\\\"citation_pdf_url\\\" content=\\\"\\(.*\\)\\\"")
